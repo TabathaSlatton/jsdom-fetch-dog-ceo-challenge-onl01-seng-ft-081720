@@ -11,7 +11,7 @@ function fetchImages() {
 
 function renderImageElements(images) {
     const container = document.getElementById('dog-image-container')
-    console.log(images.message)
+    // console.log(images.message)
     // for (const image of images) {}
     images.message.forEach(image => {
         // console.log(image)
@@ -27,9 +27,25 @@ function fetchBreeds() {
     .then(json => renderBreedElements(json));
 }
 
+function renderBreedElements(breeds) {
+    const ul = document.getElementById('dog-breeds')
+    myBreeds = breeds.message
+    for(const breed in myBreeds){
+        // console.log(breed)
+        const li = document.createElement("li")
+        ul.appendChild(li)
+        li.innerText = breed
+        li.className = "breeds-list-item"
+        li.addEventListener('click', function(event) {
+            li.style.color = "purple"
+        });
+    } 
+}
 
 
 document.addEventListener("DOMContentLoaded", function() {
     fetchImages()
     fetchBreeds()
+
+    
 });
